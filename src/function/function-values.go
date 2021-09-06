@@ -7,6 +7,11 @@ import (
 	"math"
 )
 
+/*
+ * 对于以小写字母开头的函数，其作用域只属于所声明的包内，不能被其他包使用
+ * 如果我们把函数名以大写字母开头，该函数就可以被其他包调用
+ */
+
 func compute(fn func(float64, float64) float64) float64 {
 	return fn(3, 4)
 }
