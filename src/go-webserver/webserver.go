@@ -11,7 +11,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	//handlerFunc会将handler转换成一个实现了Handler接口的HandlerFunc类型
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", handler)
+	//myHandler := MyHandler{}
+	//http.Handle("/myHandler", &myHandler)
+	http.ListenAndServe(":8080", mux)
 }
