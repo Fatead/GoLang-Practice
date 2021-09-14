@@ -28,7 +28,7 @@ func main() {
 	exitChan := make(chan bool, 1)
 	go writeData(intChan)
 	go readData(intChan, exitChan)
-	//主线程等
+	//主线程等待exitChan写入true
 	for {
 		_, ok := <-exitChan
 		if !ok {
