@@ -23,6 +23,7 @@ func inorderTraversal(root *TreeNode) []int {
 	nums := make([]int, nodeList.Len())
 	index := nodeList.Front()
 	for i := 0; i < len(nums); i++ {
+		//使用类型断言进行类型转换
 		nums[i] = index.Value.(int)
 		index = index.Next()
 	}
