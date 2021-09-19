@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// 测试在数据库中添加用户
 func TestAddActor(t *testing.T) {
 	fmt.Println("测试添加用户...")
 	actor := &Actor{}

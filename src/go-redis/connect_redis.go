@@ -41,4 +41,33 @@ func main() {
 	set("name", "x", 100)
 	s, b := get("name")
 	fmt.Println(s, b)
+	_, err := Client.Do("set", "catName", "tom").Result()
+	if err != nil {
+		fmt.Println("set出错")
+	}
+	result, err := Client.Do("Get", "catName").Result()
+	if err != nil {
+		fmt.Println("Get error", err)
+		return
+	}
+	fmt.Println(result)
+
+	//通过GoLang对hash数据类型进行操作
+	_, err = Client.Do("HSet", "user01", "name", "john").Result()
+	if err != nil {
+		fmt.Println("HSet error")
+	}
+	_, err = Client.Do("HSet", "user01", "age", "18").Result()
+	if err != nil {
+		fmt.Println("Hset error 02")
+	}
+	name, err := Client.Do("HGet", "user01", "name").Result()
+	fmt.Println(name)
+	age, err := Client.Do("HGet", "user01", "age").Result()
+	fmt.Println(age)
+
+	//通过GoLang对Redis进行操作，一次操作多个key-val 数据
+	_, err = Client.Do("MSet", "name", "尚硅谷", "adress", "北京昌平").Result()
+	res, err := Client.Do("MGet", "name", "adress").Result()
+	fmt.Println(res)
 }
