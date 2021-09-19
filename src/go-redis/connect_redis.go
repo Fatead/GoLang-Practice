@@ -70,4 +70,11 @@ func main() {
 	_, err = Client.Do("MSet", "name", "尚硅谷", "adress", "北京昌平").Result()
 	res, err := Client.Do("MGet", "name", "adress").Result()
 	fmt.Println(res)
+
+	//对list进行操作
+	Client.RPush("list", "val1", "val2")
+	Client.LPush("list", "val0")
+	r, err := Client.RPop("list").Result()
+	fmt.Println(r)
+
 }

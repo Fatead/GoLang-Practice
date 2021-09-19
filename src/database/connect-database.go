@@ -22,7 +22,7 @@ func main() {
 		fmt.Println("预编译出现异常", err)
 	}
 	//执行语句
-	_, err2 := inStmt.Exec(1245, "tomcat", "tomcat")
+	_, err2 := inStmt.Exec(1246, "tomcat", "tomcat")
 	if err2 != nil {
 		fmt.Println("执行时出现异常")
 	}
