@@ -11,3 +11,19 @@ type OrderItem struct {
 	ImaPath string
 	OrderId string
 }
+
+func (p *Page) IsHasPre() bool {
+	return p.IndexPage > 1
+}
+
+func (p *Page) IsHasNext() bool {
+	return p.IndexPage < p.Pages
+}
+
+func (p *Page) GetPrevPageNo() int64 {
+	return p.IndexPage - 1
+}
+
+func (p *Page) GetNextPageNo() int64 {
+	return p.IndexPage + 1
+}
