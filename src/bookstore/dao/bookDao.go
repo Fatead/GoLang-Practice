@@ -90,7 +90,7 @@ func DeleteBookById(BookId int) (int64, error) {
 }
 
 //updateBooks 更新图书信息, 根据图书的ID对图书信息进行更新
-func updateBooks(book *model.Book) (int64, error) {
+func UpdateBooks(book *model.Book) (int64, error) {
 	sqlStr := "Update books set title = ?,author  = ?,price  = ?,sales  = ?,stock  = ?,img_path  = ? where id = ?"
 	stmt, err := utils.Db.Prepare(sqlStr)
 	if err != nil {
@@ -112,7 +112,7 @@ func updateBooks(book *model.Book) (int64, error) {
 
 //getPage 获取图书总页数 , args是变长参数用来保存sql语句执行中的各种参数信息
 func getPage(sqlStr string, pageSize int64, args ...interface{}) (pages int64, count int64, err error) {
-	row := utils.Db.QueryRow(sqlStr, args)
+	row := utils.Db.QueryRow(sqlStr, args...)
 	//得到总数
 	err = row.Scan(&count)
 	if err != nil {
@@ -121,16 +121,16 @@ func getPage(sqlStr string, pageSize int64, args ...interface{}) (pages int64, c
 	}
 	//计算总页数
 	if count%pageSize == 0 {
-		pages = count / pages
+		pages = count / pageSize
 	} else {
-		pages = count/pages + 1
+		pages = count/pageSize + 1
 	}
 	return
 }
 
 //getBooksForPage 为查询到的图书集合赋值，方便进行分页查询
 func getBooksForPage(sqlStr string, args ...interface{}) ([]*model.Book, error) {
-	rows, err := utils.Db.Query(sqlStr, args)
+	rows, err := utils.Db.Query(sqlStr, args...)
 	if err != nil {
 		fmt.Println("分页获取出现异常", err)
 		return nil, err

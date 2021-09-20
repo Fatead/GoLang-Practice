@@ -74,13 +74,37 @@ func TestDeleteBookById(t *testing.T) {
 }
 
 func TestUpdateBooks(t *testing.T) {
-
+	book, err := dao.FindBookById(23)
+	if err != nil {
+		fmt.Println("根据ID查询图书信息出现异常")
+	}
+	book.Price = 85
+	res, err := dao.UpdateBooks(book)
+	if err != nil {
+		fmt.Println("更新图书信息过程中出现异常")
+	} else {
+		fmt.Println("图书更新成功，受影响的行数为：", res)
+	}
 }
 
 func TestGetPageBooks(t *testing.T) {
-
+	page, err := dao.GetPageBooks(2)
+	if err != nil || page == nil {
+		fmt.Println("分页查询图书出现异常， err", err)
+	}
+	fmt.Println("查询图书信息成功，图书信息如下：")
+	for _, book := range page.Books {
+		fmt.Println(book)
+	}
 }
 
+// 测试根据价格范围查找符合要求的图书
 func TestQueryPrice(t *testing.T) {
-
+	pages, err := dao.QueryPrice(2, 30, 40)
+	if err != nil {
+		fmt.Println("分页查询图书过程中出现异常")
+	}
+	for _, book := range pages.Books {
+		fmt.Println(*book)
+	}
 }
