@@ -54,9 +54,17 @@ func AddBook2Cart(w http.ResponseWriter, r *http.Request) {
 				cart.CartItems = cartItems
 			} else {
 				//已经创建该购物项，则购物车内购物项数量加1
-
+				for _, v := range cart.CartItems {
+					//只有新增图书+1，用cart结构体修改编译后面UpdateCart使用cart
+					if v.Book.ID == cartItem.Book.ID {
+						v.Count += 1
+						dao.UpdateBookCount(v)
+					}
+				}
 			}
+			dao.UpdateCart(cart)
 		}
+		w.Write([]byte("您刚刚将 《" + book.Title + "》 添加到了购物车！"))
 	} else {
 		w.Write([]byte("请先登录再进行操作"))
 	}
