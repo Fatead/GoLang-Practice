@@ -1,8 +1,8 @@
 package transport_v1
 
 import (
-	"awesomeProject/src/go-kit/endpoint_v1"
-	"awesomeProject/src/go-kit/service_v1"
+	"awesomeProject/src/go-kit/v1/endpoint_v1"
+	"awesomeProject/src/go-kit/v1/service_v1"
 	"context"
 	"encoding/json"
 	"fmt"
