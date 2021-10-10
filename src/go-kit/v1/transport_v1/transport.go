@@ -26,6 +26,7 @@ func NewHttpHandler(endpoint endpoint_v1.EndPointServer) http.Handler {
 	))
 	return m
 }
+
 func decodeHTTPADDRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	var (
 		in  service_v1.Add

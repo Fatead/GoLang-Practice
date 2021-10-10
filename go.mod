@@ -13,4 +13,5 @@ require (
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/onsi/ginkgo v1.16.4 // indirect
 	github.com/onsi/gomega v1.16.0 // indirect
+	github.com/gin-gonic/gin v1.7.4
 )
